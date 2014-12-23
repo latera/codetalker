@@ -10767,9 +10767,6 @@ static int __Pyx_TraceSetupAndCall(PyCodeObject** code,
         );
         if (*frame == NULL) return 0;
     }
-    else {
-        (*frame)->f_tstate = PyThreadState_GET();
-    }
     return PyThreadState_GET()->c_profilefunc(PyThreadState_GET()->c_profileobj, *frame, PyTrace_CALL, NULL) == 0;
 }
 static PyCodeObject *__Pyx_createFrameCodeObject(const char *funcname, const char *srcfile, int firstlineno) {
