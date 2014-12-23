@@ -41,7 +41,7 @@ def make_test(fn, text, expected=None):
     return meta
 
 def make_tests(globs, name, tokenize, tests):
-    print 'hi'
+    print('hi')
     for i, (string, expected) in enumerate(tests):
         globs['test %s #%d' % (name, i)] = make_test(tokenize, string, expected)
 

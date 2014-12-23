@@ -8,11 +8,11 @@ import time
 def timeit(a, *b, **c):
     t = time.time()
     r = a(*b, **c)
-    print '%s took %s' % (a, time.time() - t)
+    print('%s took %s' % (a, time.time() - t))
     return r
 
 if not good == timeit(JSON.from_string, text):
-    print 'failurez'
+    print('failurez')
 
 
 

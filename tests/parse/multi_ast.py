@@ -43,8 +43,8 @@ if __name__ == '__main__':
     for name, fn in globals().items():
         if name.startswith('test_'):
             fn()
-            print 'test passed'
-    print 'Finished!'
+            print('test passed')
+    print('Finished!')
 
 
 # vim: et sw=4 sts=4

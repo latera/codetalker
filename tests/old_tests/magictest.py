@@ -27,7 +27,7 @@ class MagicTest(unittest.TestCase):
         return unittest.TextTestRunner(verbosity=vb).run(cls.toSuite())
 
 def suite(mod):
-    print 'suiting',mod
+    print('suiting', mod)
     def meta():
         thesuite = unittest.TestSuite()
         module = __import__(mod)

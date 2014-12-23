@@ -261,17 +261,20 @@ class Grammar:
     def parse_rule(self, rule, tokens, error):
         if rule < 0 or rule >= len(self.rules):
             raise ParseError('invalid rule: %d' % rule)
-        if logger.output:print>>logger, 'parsing for rule', self.rule_names[rule]
+        if logger.output:
+            print('parsing for rule', self.rule_names[rule], file=logger)
         logger.indent += 1
         node = ParseTree(rule, self.rule_names[rule])
         for option in self.rules[rule]:
             res = self.parse_children(rule, option, tokens, error)
             if res is not None:
-                if logger.output:print>>logger, 'yes!',self.rule_names[rule], res
+                if logger.output:
+                    print('yes!', self.rule_names[rule], res, file=logger)
                 logger.indent -= 1
                 node.children = res
                 return node
-        if logger.output:print>>logger, 'failed', self.rule_names[rule]
+        if logger.output:
+            print('failed', self.rule_names[rule], file=logger)
         logger.indent -= 1
         return None
     
@@ -284,7 +287,8 @@ class Grammar:
                     res.append(tokens.current())
                     tokens.advance()
             current = children[i]
-            if logger.output:print>>logger, 'parsing child',current,i
+            if logger.output:
+                print('parsing child', current, i file=logger)
             if type(current) == int:
                 if current < 0:
                     ctoken = tokens.current()
@@ -294,7 +298,11 @@ class Grammar:
                         i += 1
                         continue
                     else:
-                        if logger.output:print>>logger, 'token mismatch', ctoken, self.tokens[-(current + 1)]
+                        if logger.output:
+                            print('token mismatch',
+                                  ctoken,
+                                  self.tokens[-(current + 1)],
+                                  file=logger)
                         if tokens.at > error[0]:
                             error[0] = tokens.at
                             error[1] = 'Unexpected token %s; expected %s (while parsing %s)' % (repr(ctoken), self.tokens[-(current + 1)], self.rule_names[rule])
@@ -322,21 +330,28 @@ class Grammar:
                 if tokens.at > error[0]:
                     error[0] = tokens.at
                     error[1] = 'Unexpected token %s; expected \'%s\' (while parsing %s)' % (repr(ctoken), current.encode('string_escape'), self.rule_names[rule])
-                if logger.output:print>>logger, 'FAIL string compare:', [current, tokens.current().value]
+                if logger.output:
+                    print('FAIL string compare:',
+                          [current, tokens.current().value],
+                          file=logger)
                 return None
             elif type(current) == tuple:
                 st = current[0]
                 if st == '*':
-                    if logger.output:print>>logger, 'star repeat'
+                    if logger.output:
+                        print('star repeat', file=logger)
                     while 1:
-                        if logger.output:print>>logger, 'trying one'
+                        if logger.output:
+                            print('trying one', file=logger)
                         at = tokens.at
                         sres = self.parse_children(rule, current[1:], tokens, error)
                         if sres:
-                            if logger.output:print>>logger, 'yes! (star)'
+                            if logger.output:
+                                print('yes! (star)', file=logger)
                             res += sres
                         else:
-                            if logger.output:print>>logger, 'no (star)'
+                            if logger.output:
+                                print('no (star)', file=logger)
                             tokens.at = at
                             break
                     i += 1

@@ -34,10 +34,10 @@ parse_rule(many, (
 if __name__ == '__main__':
     for name, fn in sorted(globals().items()):
         if name.startswith('test_'):
-            print 'testing', name
+            print('testing', name)
             fn()
-            print 'test passed'
-    print 'Finished!'
+            print('test passed')
+    print('Finished!')
 
 
 # vim: et sw=4 sts=4

@@ -4,13 +4,13 @@ try:
     from distutils.core import setup
     from distutils.extension import Extension
 except ImportError:
-    print 'distutils is required to install this module. If you have pip installed, run: pip instal distutils'
+    print('distutils is required to install this module. If you have pip installed, run: pip instal distutils')
     raise
 
 try:
     from Cython.Distutils import build_ext
 except ImportError:
-    print 'Cython is required to install this module'
+    print('Cython is required to install this module')
     raise
 
 import os
