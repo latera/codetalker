@@ -33,7 +33,7 @@ def suite(mod):
         module = __import__(mod)
         for sub in mod.split('.')[1:]:
             module = getattr(module, sub)
-        for k,v in module.__dict__.iteritems():
+        for k,v in module.__dict__.items():
             if inspect.isclass(v) and issubclass(v, MagicTest) and v.__module__ == mod:
                 thesuite.addTest(v.toSuite())
         return thesuite

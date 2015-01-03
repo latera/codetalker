@@ -97,7 +97,7 @@ def make_fail(grammar, text):
             pass
     return meta
 
-for func, strings in tests.iteritems():
+for func, strings in tests.items():
     grammar = make_grammar(func)
     name = func.__name__
     for i, good in enumerate(strings[0]):

@@ -68,7 +68,7 @@ class Translator:
                 stuff.update(args)
                 Scope = type('Scope', (), {})
                 scope = Scope()
-                for k,v in stuff.iteritems():
+                for k,v in stuff.items():
                     setattr(scope, k, v)
             return self.translate(tree, scope)
         elif args:

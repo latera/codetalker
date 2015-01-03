@@ -109,8 +109,8 @@ class Grammar:
         rule.builder = builder
         if not rule.options:
             raise Exception('no rule options specified in %r' % builder)
-        attrs = []
-        for attr, dct in rule.astAttrs.iteritems():
+
+        for attr, dct in rule.astAttrs.items():
             if type(dct) != dict:
                 dct = {'type':dct}
             if type(dct['type']) not in (tuple, list):
