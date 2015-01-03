@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from errors import *
-import tokens
-from tokens import Token
+from codetalker.pgm.errors import *
+from codetalker.pgm import tokens
+from codetalker.pgm.tokens import Token
 import types
-from special import Special
+from codetalker.pgm.special import Special
 import inspect
 
 class RuleLoader(object):

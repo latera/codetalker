@@ -1,9 +1,9 @@
-from rules import RuleLoader
-from tokens import EOF, INDENT, DEDENT, Token
-from errors import *
+from codetalker.pgm.rules import RuleLoader
+from codetalker.pgm.tokens import EOF, INDENT, DEDENT, Token
+from codetalker.pgm.errors import *
 
-from nodes import AstNode, ParseTree, TokenStream
-from logger import logger
+from codetalker.pgm.nodes import AstNode, ParseTree
+from codetalker.pgm.logger import logger
 import inspect
 
 # from codetalker.pgm.cgrammar.tokenize import tokenize
@@ -288,7 +288,7 @@ class Grammar:
                     tokens.advance()
             current = children[i]
             if logger.output:
-                print('parsing child', current, i file=logger)
+                print('parsing child', current, i, file=logger)
             if type(current) == int:
                 if current < 0:
                     ctoken = tokens.current()

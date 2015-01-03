@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from tokens import Token
+from codetalker.pgm.tokens import Token
 import types
 import inspect
 import copy
-from nodes import AstNode
+from codetalker.pgm.nodes import AstNode
 
-from errors import CodeTalkerException
+from codetalker.pgm.errors import CodeTalkerException
 
 class TranslatorException(CodeTalkerException):
     pass

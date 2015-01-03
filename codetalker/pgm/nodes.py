@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-# from tokens import EOF, Token
-from errors import ParseError
+from codetalker.pgm.tokens import EOF
+from codetalker.pgm.errors import ParseError
 
 class TokenStream:
     def __init__(self, tokens):
@@ -11,14 +11,14 @@ class TokenStream:
     def current(self):
         if self.at >= len(self.tokens):
             return EOF('')
-            raise ParseError('ran out of tokens')
+
         return self.tokens[self.at]
     
     def next(self):
         self.at += 1
         if self.at > len(self.tokens):
             return EOF('')
-            raise ParseError('ran out of tokens')
+
     advance = next
 
     def hasNext(self):
