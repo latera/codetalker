@@ -1,30 +1,40 @@
 #!/usr/bin/env python
 
+
 class CodeTalkerException(Exception):
     pass
 
+
 class LineError(CodeTalkerException):
     def __init__(self, text, lineno, charno):
-        Exception.__init__(self, text + ' at (%d, %d)' % (lineno, charno))
+        super().__init__(text + ' at (%d, %d)' % (lineno, charno))
+
         self.lineno = lineno
         self.charno = charno
+
 
 class ParseError(LineError):
     pass
 
-class TokenError(LineError):
+
+class TokenError(CodeTalkerException):
     def __init__(self, msg, text, lineno, charno):
         tease = ''
         lines = text.splitlines()
+
         if lineno-1 < len(lines):
             tease = lines[lineno-1][charno-1:charno+30]
-        Exception.__init__(self, msg + ' at (%d, %d) \'%s\'' % (lineno, charno, tease.encode('string_escape')))
+
+        super().__init__(msg + ' at (%d, %d) \'%s\'' %
+                         (lineno, charno, tease.encode('utf-8')))
+
         self.lineno = lineno
         self.charno = charno
-    pass
+
 
 class AstError(CodeTalkerException):
     pass
+
 
 class RuleError(CodeTalkerException):
     pass
